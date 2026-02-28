@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Otomatik Sertifika Üretici</title>
+  <meta name="description" content="CSV dosyasından isimleri alarak toplu sertifika üreten ücretsiz online araç." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Merriweather:wght@300;400;700;900&family=Open+Sans:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700;800;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/7.css" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+</head>
+<body>
+
+<!-- Windows 7 Desktop Background -->
+<div class="win7-desktop">
+
+  <!-- The main application window -->
+  <div class="window win7-app-window active" id="main-window">
+    <div class="title-bar">
+      <div class="title-bar-text">🏆 Sertifika Üretici</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+
+    <!-- Menu bar -->
+    <div class="win7-menubar">
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer" class="win7-help-link">
+        ❓ Nasıl Kullanılır?
+      </a>
+      <span class="win7-menubar-sep">|</span>
+      <a href="https://www.batuhdede.me/" target="_blank" rel="noopener noreferrer" class="win7-help-link win7-logo-link">
+        <img src="/batuhd.png" alt="batuhd logo" style="width:18px;height:18px;display:inline-block;vertical-align:middle;border:none;border-radius:3px;object-fit:contain;" />
+        batuhdede.me
+      </a>
+      <span class="win7-menubar-sep">|</span>
+      <a href="https://github.com/batuhd/oto-sertifika" target="_blank" rel="noopener noreferrer" class="win7-help-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:3px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        Bu site açık kaynak kodludur.
+      </a>
+    </div>
+
+    <div class="window-body win7-body">
+
+      <!-- STEP TABS -->
+      <menu role="tablist" id="step-tabs">
+        <button role="tab" aria-controls="tab-upload" aria-selected="true" id="tab-btn-1">
+          📁 1. Dosya Yükle
+        </button>
+        <button role="tab" aria-controls="tab-columns" id="tab-btn-2" disabled>
+          📋 2. Sütun Seç
+        </button>
+        <button role="tab" aria-controls="tab-settings" id="tab-btn-3" disabled>
+          🎨 3. Düzenleme
+        </button>
+        <button role="tab" aria-controls="tab-generate" id="tab-btn-4" disabled>
+          🚀 4. Oluştur
+        </button>
+      </menu>
+
+      <!-- ══ TAB 1: Upload ══ -->
+      <article role="tabpanel" id="tab-upload">
+        <div class="win7-tab-content">
+          <div class="win7-upload-grid">
+            <!-- Certificate Image -->
+            <fieldset style="flex:1;">
+              <legend>📷 Sertifika Şablonu</legend>
+              <div class="win7-dropzone" id="image-dropzone">
+                <div class="win7-drop-inner">
+                  <div class="win7-drop-icon">🖼️</div>
+                  <p><strong>Sertifika Şablonunu Yükle</strong></p>
+                  <p class="win7-hint">PNG, JPG veya WEBP — sürükle bırak veya tıkla</p>
+                  <input type="file" id="image-input" accept="image/*" hidden />
+                  <button onclick="document.getElementById('image-input').click()">Dosya Seç...</button>
+                </div>
+              </div>
+              <div class="win7-preview-row" id="image-preview-container" style="display:none;">
+                <img id="image-preview-thumb" alt="Önizleme" />
+                <div class="win7-preview-info">
+                  <strong>Şablon yüklendi ✓</strong>
+                </div>
+                <button id="remove-image">Kaldır</button>
+              </div>
+            </fieldset>
+
+            <!-- CSV -->
+            <fieldset style="flex:1;">
+              <legend>📄 CSV Dosyası</legend>
+              <div class="win7-dropzone" id="csv-dropzone">
+                <div class="win7-drop-inner">
+                  <div class="win7-drop-icon">📊</div>
+                  <p><strong>CSV Dosyasını Yükle</strong></p>
+                  <p class="win7-hint">İsimlerin bulunduğu CSV dosyası</p>
+                  <input type="file" id="csv-input" accept=".csv" hidden />
+                  <button onclick="document.getElementById('csv-input').click()">Dosya Seç...</button>
+                </div>
+              </div>
+              <div class="win7-preview-row" id="csv-preview-container" style="display:none;">
+                <span>📄</span>
+                <span id="csv-filename" style="font-weight:bold;"></span>
+                <span id="csv-count" style="color:#0078d7;font-weight:bold;"></span>
+                <button id="remove-csv">Kaldır</button>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Tab 1: Next button -->
+          <div class="win7-tab-footer">
+            <button class="default" id="btn-upload-next" disabled>
+              Sütun Seçimine Geç &rarr;
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article role="tabpanel" id="tab-columns" hidden>
+        <div class="win7-tab-content">
+          <p>Sertifikaya yazılacak isim için CSV sütunlarını seçin. Birden fazla sütun seçerseniz birleştirilir.</p>
+          <div id="column-checkboxes" class="win7-column-checks"></div>
+
+          <fieldset style="margin-top:12px;">
+            <legend>Önizleme (ilk 5 isim)</legend>
+            <ul id="name-preview-list" class="win7-preview-list"></ul>
+          </fieldset>
+
+          <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+            <button class="default" id="btn-columns-next" disabled>
+              Düzenlemeye Geç &rarr;
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ══ TAB 3: Editor ══ -->
+      <article role="tabpanel" id="tab-settings" hidden>
+        <div class="win7-editor-layout">
+
+          <!-- Left: Positioning -->
+          <div class="win7-side-panel">
+            <fieldset>
+              <legend>📐 Konum</legend>
+
+              <div class="win7-control-row">
+                <label>Hızlı Hizalama:</label>
+                <div style="display:flex;gap:4px;margin-top:4px;">
+                  <button id="btn-center-h">&harr; Yatay</button>
+                  <button id="btn-center-v">&updownarrow; Dikey</button>
+                </div>
+              </div>
+
+              <div class="win7-control-row" style="margin-top:10px;">
+                <label for="box-width">Genişlik: <strong><span id="box-width-value">60</span>%</strong></label>
+                <input type="range" id="box-width" min="10" max="100" value="60" style="width:100%;" />
+              </div>
+
+              <div class="win7-control-row" style="margin-top:6px;">
+                <label for="box-height">Yükseklik: <strong><span id="box-height-value">10</span>%</strong></label>
+                <input type="range" id="box-height" min="3" max="50" value="10" style="width:100%;" />
+              </div>
+
+              <div class="win7-control-row" style="margin-top:10px;">
+                <label>İnce Ayar:</label>
+                <div class="win7-nudge-grid" style="margin-top:4px;">
+                  <div></div>
+                  <button id="nudge-up">▲</button>
+                  <div></div>
+                  <button id="nudge-left">◀</button>
+                  <button id="nudge-center" title="Tam Ortala">⊕</button>
+                  <button id="nudge-right">▶</button>
+                  <div></div>
+                  <button id="nudge-down">▼</button>
+                  <div></div>
+                </div>
+              </div>
+
+              <p class="win7-hint" style="margin-top:8px;">💡 Sertifika üzerine tıklayarak da konum ayarlanabilir.</p>
+            </fieldset>
+          </div>
+
+          <!-- Center: Canvas -->
+          <div class="win7-canvas-area">
+            <fieldset style="height:100%;display:flex;flex-direction:column;">
+              <legend>🖼️ Önizleme</legend>
+              <div class="win7-canvas-viewport" id="canvas-viewport">
+                <div class="win7-canvas-inner" id="canvas-inner">
+                  <div class="win7-canvas-container" id="canvas-container">
+                    <canvas id="preview-canvas"></canvas>
+                    <div class="text-box-overlay" id="text-box-overlay" style="display:none;">
+                      <div class="text-box-handle handle-tl" data-handle="tl"></div>
+                      <div class="text-box-handle handle-tr" data-handle="tr"></div>
+                      <div class="text-box-handle handle-bl" data-handle="bl"></div>
+                      <div class="text-box-handle handle-br" data-handle="br"></div>
+                      <div class="text-box-handle handle-ml" data-handle="ml"></div>
+                      <div class="text-box-handle handle-mr" data-handle="mr"></div>
+                      <div class="text-box-handle handle-tm" data-handle="tm"></div>
+                      <div class="text-box-handle handle-bm" data-handle="bm"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Zoom bar -->
+              <div class="win7-zoom-bar">
+                <button id="btn-zoom-out">−</button>
+                <button id="zoom-value-btn" id2="zoom-value-btn" style="min-width:52px;font-family:monospace;">
+                  <span id="zoom-value">100%</span>
+                </button>
+                <button id="btn-zoom-in">+</button>
+                <span style="margin:0 6px;color:#888;">|</span>
+                <button id="btn-zoom-reset">⛶ Sığdır</button>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Right: Typography -->
+          <div class="win7-side-panel">
+            <fieldset>
+              <legend>🔤 Yazı</legend>
+
+              <div class="win7-control-row">
+                <label for="font-family">Yazı Tipi:</label>
+                <select id="font-family" style="width:100%;">
+                  <optgroup label="Sans-Serif">
+                    <option value="Inter">Inter</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Raleway">Raleway</option>
+                    <option value="Oswald">Oswald</option>
+                    <option value="Open Sans">Open Sans</option>
+                    <option value="Quicksand">Quicksand</option>
+                    <option value="Nunito">Nunito</option>
+                  </optgroup>
+                  <optgroup label="Serif">
+                    <option value="Playfair Display">Playfair Display</option>
+                    <option value="Lora">Lora</option>
+                    <option value="Merriweather">Merriweather</option>
+                    <option value="Libre Baskerville">Libre Baskerville</option>
+                    <option value="Cormorant Garamond">Cormorant Garamond</option>
+                    <option value="Cinzel">Cinzel</option>
+                    <option value="Crimson Text">Crimson Text</option>
+                    <option value="Source Serif 4">Source Serif 4</option>
+                    <option value="EB Garamond">EB Garamond</option>
+                  </optgroup>
+                  <optgroup label="El Yazısı">
+                    <option value="Great Vibes">Great Vibes</option>
+                    <option value="Dancing Script">Dancing Script</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div class="win7-control-row" style="margin-top:8px;">
+                <label>Boyut: <strong><span id="font-size-value">60</span>px</strong></label>
+                <!-- Slider alone -->
+                <input type="range" id="font-size" min="10" max="200" value="60" style="width:100%;margin-top:4px;" />
+                <!-- ± buttons on the row below -->
+                <div style="display:flex;gap:4px;margin-top:4px;">
+                  <button id="btn-font-decrease" style="flex:1;">− Küçült</button>
+                  <button id="btn-font-increase" style="flex:1;">+ Büyüt</button>
+                </div>
+
+                <!-- Overflow warning — inline, right under font size -->
+                <div id="overflow-warning" class="win7-overflow-inline" style="display:none;margin-top:6px;">
+                  <span class="win7-overflow-icon">⚠️</span>
+                  <span><strong id="overflow-count">0</strong> isim sığmıyor — küçültülecek</span>
+                  <div class="win7-overflow-actions">
+                    <button id="btn-overflow-details">Detay</button>
+                    <button id="btn-overflow-dismiss">✕</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="win7-control-row" style="margin-top:8px;">
+                <label for="font-weight">Kalınlık:</label>
+                <select id="font-weight" style="width:100%;">
+                  <option value="300">İnce</option>
+                  <option value="400">Normal</option>
+                  <option value="500">Orta</option>
+                  <option value="600">Yarı Kalın</option>
+                  <option value="700" selected>Kalın</option>
+                </select>
+              </div>
+
+              <div class="win7-control-row" style="margin-top:8px;">
+                <label for="font-color">Renk:</label>
+                <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                  <input type="color" id="font-color" value="#1a1a2e" style="width:36px;height:26px;padding:1px;" />
+                  <span id="font-color-hex" style="font-family:monospace;">#1a1a2e</span>
+                </div>
+              </div>
+
+              <hr style="margin:10px 0;" />
+
+              <div class="win7-control-row">
+                <label>Hizalama:</label>
+                <div class="win7-align-row">
+                  <button class="align-btn" data-align="left" title="Sol">Sol</button>
+                  <button class="align-btn active" data-align="center" title="Orta">Orta</button>
+                  <button class="align-btn" data-align="right" title="Sa&#287;">Sa&#287;</button>
+                </div>
+              </div>
+
+              <div class="win7-control-row" style="margin-top:8px;">
+                <label for="text-transform">Harf Stili:</label>
+                <select id="text-transform" style="width:100%;">
+                  <option value="none">Orijinal</option>
+                  <option value="uppercase">BÜYÜK HARF</option>
+                  <option value="capitalize">Baş Harfler</option>
+                </select>
+              </div>
+
+              <div class="win7-control-row" style="margin-top:8px;">
+                <label for="prefix-text">Ön Ek:</label>
+                <input type="text" id="prefix-text" placeholder="Örn: Sn. " style="width:100%;margin-top:4px;" />
+              </div>
+
+
+            </fieldset>
+          </div>
+
+          <!-- Tab 3: Next button (bottom-right of editor, outside the grid) -->
+        </div>
+        <div class="win7-tab-footer">
+          <button class="default" id="btn-settings-next" disabled>
+            Oluşturmaya Geç &rarr;
+          </button>
+        </div>
+      </article>
+
+      <!-- ══ TAB 4: Generate ══ -->
+      <article role="tabpanel" id="tab-generate" hidden>
+        <div class="win7-tab-content">
+          <div class="win7-generate-center">
+
+            <fieldset style="max-width:500px;width:100%;">
+              <legend>🚀 Sertifika Oluştur</legend>
+
+              <p>Toplam <strong id="total-count">0</strong> adet sertifika oluşturulacak ve ZIP olarak indirilecek.</p>
+
+
+              <div style="display:flex;align-items:center;gap:10px;margin:10px 0;">
+                <label for="output-format">Çıktı Formatı:</label>
+                <select id="output-format">
+                  <option value="png">PNG</option>
+                  <option value="jpeg">JPEG</option>
+                </select>
+              </div>
+
+              <button class="default" id="btn-generate" style="width:100%;padding:6px 0;">
+                🚀 Sertifikaları Oluştur ve İndir
+              </button>
+
+              <div id="progress-section" style="display:none;margin-top:12px;">
+                <div role="progressbar" class="animate" id="progress-bar-wrap" style="margin-bottom:6px;">
+                  <div id="progress-bar" style="width:0%;"></div>
+                </div>
+                <p id="progress-text" style="text-align:center;font-size:12px;">Hazırlanıyor...</p>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /window-body -->
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <p class="status-bar-field">Otomatik Sertifika Üretici</p>
+      <p class="status-bar-field">Tüm işlemler tarayıcınızda gerçekleşir ve herhangi bir sunucuya aktarılmaz.</p>
+      <p class="status-bar-field">Made in Sinop with ❤️</p>
+    </div>
+  </div><!-- /window -->
+
+</div><!-- /win7-desktop -->
+
+<!-- Overflow Modal -->
+<div class="modal-backdrop" id="overflow-modal" style="display:none;">
+  <div class="window" style="max-width:480px;width:90%;">
+    <div class="title-bar">
+      <div class="title-bar-text">⚠️ Sığmayan İsimler</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" id="btn-modal-close"></button>
+      </div>
+    </div>
+    <div class="window-body has-space">
+      <p>Bu isimler belirlenen kutuda orijinal boyutuyla sığmıyor. Oluşturma sırasında otomatik küçültülecek.</p>
+      <ul class="win7-overflow-list" id="overflow-list"></ul>
+      <div style="text-align:right;margin-top:10px;">
+        <button class="default" id="btn-modal-ok">Tamam</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
